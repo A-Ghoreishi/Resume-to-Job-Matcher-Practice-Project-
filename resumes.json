@@ -1,0 +1,192 @@
+[
+    {
+        "id": "a1b2c3d4e5f6078910ab",
+        "title": "Neurosurgeon",
+        "text": "A highly skilled and dedicated neurosurgeon with over 10 years of experience in performing complex brain surgeries. Proficient in neuroanatomy, microsurgery, and emergency procedures. Excellent manual dexterity and precision under pressure. Passionate about patient care and recovery, with a strong focus on post-surgical rehabilitation and communication with families. Proven ability to make split-second decisions in high-stakes environments while maintaining the highest standards of care.",
+        "key_words": [
+            "neurosurgeon",
+            "brain surgeries",
+            "neuroanatomy",
+            "microsurgery",
+            "emergency procedures",
+            "manual dexterity",
+            "precision",
+            "patient care",
+            "post-surgical rehabilitation",
+            "communication",
+            "high-stakes decision making"
+        ]
+    },
+    {
+        "id": "b1c2d3e4f5a6078910bc",
+        "title": "Airline Pilot",
+        "text": "An experienced airline pilot with over 5,000 hours of flight time, skilled in operating a wide range of commercial aircraft. Expertise in flight planning, navigation, and communication with air traffic control. Strong decision-making ability in adverse weather conditions and emergency situations. Dedicated to safety, efficiency, and passenger comfort. Adept in managing crew dynamics and ensuring smooth operations during each flight.",
+        "key_words": [
+            "airline pilot",
+            "flight time",
+            "commercial aircraft",
+            "flight planning",
+            "navigation",
+            "air traffic control",
+            "decision-making",
+            "adverse weather",
+            "emergency situations",
+            "safety",
+            "passenger comfort",
+            "crew management"
+        ]
+    },
+    {
+        "id": "c1d2e3f4a5b6078910cd",
+        "title": "Data Scientist",
+        "text": "A data scientist with 5 years of experience in statistical modeling and machine learning. Proficient in Python, R, and SQL for data analysis and visualization. Expertise in developing predictive models, feature engineering, and implementing algorithms to solve real-world problems. Strong background in statistics, data wrangling, and business strategy, with a proven track record of translating data insights into actionable decisions. Experienced with big data technologies and cloud computing platforms.",
+        "key_words": [
+            "data scientist",
+            "statistical modeling",
+            "machine learning",
+            "Python",
+            "R",
+            "SQL",
+            "data analysis",
+            "data visualization",
+            "predictive models",
+            "feature engineering",
+            "algorithms",
+            "business strategy",
+            "big data",
+            "cloud computing"
+        ]
+    },
+    {
+        "id": "d1e2f3a4b5c6078910de",
+        "title": "Executive Chef",
+        "text": "A creative and skilled executive chef with over 10 years of experience in leading high-end kitchens. Specializes in menu development, food costing, and innovative culinary techniques. Demonstrated leadership in managing kitchen teams, ensuring food quality, and maintaining kitchen safety standards. Excellent communication skills to interact with staff and customers, fostering a positive work environment. Strong knowledge of global cuisines and dietary needs.",
+        "key_words": [
+            "executive chef",
+            "menu development",
+            "food costing",
+            "culinary techniques",
+            "leadership",
+            "kitchen management",
+            "food quality",
+            "kitchen safety",
+            "communication",
+            "global cuisines",
+            "dietary needs"
+        ]
+    },
+    {
+        "id": "e1f2a3b4c5d6078910ef",
+        "title": "Wildlife Biologist",
+        "text": "A passionate wildlife biologist with extensive field research experience in ecosystem monitoring and species conservation. Skilled in ecological surveying, data collection, and species identification. Proficient in GIS software and statistical analysis to analyze field data. Strong background in grant writing, scientific reporting, and public outreach. Dedicated to preserving biodiversity and educating the public about conservation efforts.",
+        "key_words": [
+            "wildlife biologist",
+            "field research",
+            "ecosystem monitoring",
+            "species conservation",
+            "ecological surveying",
+            "data collection",
+            "species identification",
+            "GIS",
+            "statistical analysis",
+            "grant writing",
+            "scientific reporting",
+            "public outreach",
+            "biodiversity"
+        ]
+    },
+    {
+        "id": "f1a2b3c4d5e6078910fa",
+        "title": "Cybersecurity Analyst",
+        "text": "A highly skilled cybersecurity analyst with expertise in network security, penetration testing, and incident response. Proficient in utilizing firewalls, intrusion detection systems, and encryption protocols to safeguard organizational data. Strong analytical and problem-solving skills, with the ability to identify vulnerabilities and mitigate threats before they cause harm. Well-versed in forensic analysis and creating secure network infrastructures. Passionate about staying up-to-date with evolving cybersecurity trends and best practices.",
+        "key_words": [
+            "cybersecurity analyst",
+            "network security",
+            "penetration testing",
+            "incident response",
+            "firewalls",
+            "intrusion detection systems",
+            "encryption",
+            "data security",
+            "vulnerabilities",
+            "threat mitigation",
+            "forensic analysis",
+            "network infrastructures",
+            "cybersecurity trends"
+        ]
+    },
+    {
+        "id": "g1h2i3j4k5l6078910gh",
+        "title": "Architect",
+        "text": "A creative and detail-oriented architect with a strong foundation in structural design, building codes, and project management. Experienced in creating innovative, sustainable building designs while considering client requirements, environmental impact, and budget constraints. Proficient in CAD, BIM software, and 3D modeling. Adept at collaborating with engineers, contractors, and clients to bring designs to life. Strong understanding of construction processes and regulatory compliance.",
+        "key_words": [
+            "architect",
+            "structural design",
+            "building codes",
+            "project management",
+            "sustainable design",
+            "CAD",
+            "BIM software",
+            "3D modeling",
+            "collaboration",
+            "construction processes",
+            "regulatory compliance"
+        ]
+    },
+    {
+        "id": "h1i2j3k4l5m6078910hi",
+        "title": "Journalist (Investigative Reporter)",
+        "text": "An investigative journalist with over 7 years of experience uncovering hidden stories, conducting interviews, and analyzing documents. Expertise in research, fact-checking, and in-depth reporting on political, social, and environmental issues. Adept at writing clear and compelling stories that engage readers and influence public opinion. Strong ethical judgment and a commitment to truth. Experienced with e-discovery and legal reporting.",
+        "key_words": [
+            "investigative journalist",
+            "research",
+            "fact-checking",
+            "interviews",
+            "in-depth reporting",
+            "political issues",
+            "social issues",
+            "environmental issues",
+            "storytelling",
+            "ethical judgment",
+            "e-discovery",
+            "legal reporting"
+        ]
+    },
+    {
+        "id": "i1j2k3l4m5n6078910ij",
+        "title": "Professional Ballet Dancer",
+        "text": "A dedicated professional ballet dancer with over 10 years of performance experience. Highly trained in classical ballet techniques, with a deep understanding of musicality and choreography. Excellent flexibility, strength, and stamina, combined with strong stage presence and expressive performance skills. Experienced in performing in major ballet companies and international tours. Passionate about continuing to develop artistic skills and inspire audiences worldwide.",
+        "key_words": [
+            "ballet dancer",
+            "classical ballet",
+            "musicality",
+            "choreography",
+            "flexibility",
+            "strength",
+            "stamina",
+            "stage presence",
+            "performance",
+            "international tours",
+            "artistic skills"
+        ]
+    },
+    {
+        "id": "j1k2l3m4n5o6078910jk",
+        "title": "Civil Engineer (Structural)",
+        "text": "A detail-oriented civil engineer with expertise in structural analysis, design, and construction. Proficient in using engineering software such as SAP2000 and ETABS to design safe and reliable structures. Strong background in materials science, project management, and budgeting. Experienced in ensuring regulatory compliance and adhering to building codes. Excellent collaboration skills when working with architects, contractors, and other engineers to deliver successful projects.",
+        "key_words": [
+            "civil engineer",
+            "structural analysis",
+            "structural design",
+            "construction",
+            "SAP2000",
+            "ETABS",
+            "materials science",
+            "project management",
+            "budgeting",
+            "regulatory compliance",
+            "building codes",
+            "collaboration"
+        ]
+    }
+]
