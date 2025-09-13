@@ -11,21 +11,25 @@ from openai import OpenAI
 
 # Config & Setup
 
+# Define file paths so we can easily locate our data and cache
 APP_DIR = pathlib.Path(__file__).parent
 RESUMES_PATH = APP_DIR / "resumes.json"
 JOBS_PATH = APP_DIR / "job_opportunities.json"
 EMBED_CACHE_PATH = APP_DIR / ".embed_cache.json"
 
+# Models to choose from: default (newer) and optional legacy
 DEFAULT_MODEL = "text-embedding-3-small"  
 LEGACY_MODEL = "text-embedding-ada-002"   # optional legacy
 
-# Load environment variables
+# Load API key from environment variables for security
 load_dotenv(".env")
 metis_api_key = os.getenv("API_KEY")
 
 # Utility Functions
 
 def load_json(path: pathlib.Path) -> List[dict]:
+    # Opens a JSON file and returns its contents as Python objects
+    # Shows an error message in the UI if something goes wrong
     """Safe JSON loading with Streamlit error reporting."""
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -35,10 +39,12 @@ def load_json(path: pathlib.Path) -> List[dict]:
         return []
 
 def save_json(path: pathlib.Path, data) -> None:
+    # Saves Python data back to a JSON file with pretty formatting
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def quick_keywords(text: str, max_k: int = 15) -> List[str]:
+    # Simple keyword extractor used when no explicit keywords are given
     """Naive keyword extractor as fallback."""
     import re
     from collections import Counter
@@ -53,9 +59,11 @@ def quick_keywords(text: str, max_k: int = 15) -> List[str]:
     return common
 
 def euclidean(a: List[float], b: List[float]) -> float:
+    # Calculates Euclidean distance (straight-line distance) between two vectors
     return math.sqrt(sum((x - y) ** 2 for x, y in zip(a, b)))
 
 def mean_vec(vectors: List[List[float]]) -> List[float]:
+    # Averages a list of vectors to get a single "mean" vector
     if not vectors:
         return []
     dim = len(vectors[0])
@@ -68,6 +76,7 @@ def mean_vec(vectors: List[List[float]]) -> List[float]:
 # Embed Cache
 
 def load_embed_cache() -> Dict[str, Dict[str, List[float]]]:
+    # Loads previously saved embeddings from the cache file to save API costs
     if EMBED_CACHE_PATH.exists():
         try:
             with open(EMBED_CACHE_PATH, "r", encoding="utf-8") as f:
@@ -77,6 +86,7 @@ def load_embed_cache() -> Dict[str, Dict[str, List[float]]]:
     return {}
 
 def save_embed_cache(cache: Dict[str, Dict[str, List[float]]]) -> None:
+    # Saves embeddings back to the cache file for future reuse
     try:
         with open(EMBED_CACHE_PATH, "w", encoding="utf-8") as f:
             json.dump(cache, f)
@@ -84,13 +94,14 @@ def save_embed_cache(cache: Dict[str, Dict[str, List[float]]]) -> None:
         pass
 
 def get_embeddings_cached(keywords: List[str], model: str, client: OpenAI) -> Dict[str, List[float]]:
+    # Retrieves embeddings for each keyword, using cache when available
     """Embed keywords; uses local JSON cache + API calls."""
     cache = load_embed_cache()
     cache.setdefault(model, {})
     to_query = [kw for kw in keywords if kw not in cache[model]]
 
     if to_query:
-        # Batch query to MetisAI/OpenAI endpoint
+        # Break keywords into batches to reduce API calls
         BATCH = 200
         for i in range(0, len(to_query), BATCH):
             batch = to_query[i : i + BATCH]
@@ -106,11 +117,14 @@ def get_embeddings_cached(keywords: List[str], model: str, client: OpenAI) -> Di
 
 @st.cache_data(show_spinner=False)
 def load_data() -> Tuple[List[dict], List[dict]]:
+    # Loads resumes and jobs from JSON files and caches them for performance
     resumes = load_json(RESUMES_PATH)
     jobs = load_json(JOBS_PATH)
     return resumes, jobs
 
 def keywords_for_item(item: dict) -> List[str]:
+    # Returns a cleaned keyword list for a resume or job
+    # Uses "keywords" field if available, otherwise extracts from text
     if "keywords" in item and isinstance(item["keywords"], list) and item["keywords"]:
         return [str(k).strip() for k in item["keywords"] if str(k).strip()]
     text = " ".join([
@@ -121,6 +135,7 @@ def keywords_for_item(item: dict) -> List[str]:
     return quick_keywords(text)
 
 def vector_mean_for_keywords(keywords: List[str], model: str, client: OpenAI) -> List[float]:
+    # Converts all keywords into embeddings and averages them into a single vector
     if not keywords:
         return []
     embeds = get_embeddings_cached(keywords, model, client)
@@ -134,8 +149,8 @@ st.title("🧠 NLP Resume-to-Job Matcher")
 st.caption("Embeddings → Keyword Mean → Euclidean Distance Ranking")
 
 with st.sidebar:
+    # Sidebar allows user to input API key and select embedding model
     st.subheader("API Settings")
-
     manual_key = st.text_input("🔑 API Key (override)", value="", type="password")
     if manual_key:
         metis_api_key = manual_key
@@ -149,6 +164,7 @@ with st.sidebar:
     # Create client once, reuse everywhere
     client = OpenAI(api_key=metis_api_key, base_url="https://api.metisai.ir/openai/v1")
 
+    # Model selector lets user switch between models
     model = st.selectbox(
         "Embedding Model",
         [DEFAULT_MODEL, LEGACY_MODEL],
@@ -159,12 +175,13 @@ with st.sidebar:
 # Load resumes + jobs
 resumes, jobs = load_data()
 
-# Job selector
+# Build job list for dropdown menu
 job_titles = [f"{j.get('title','(untitled)')} — {j.get('company','')}".strip(" —") for j in jobs]
 job_idx = st.selectbox("Select a job to match:", list(range(len(jobs))), format_func=lambda i: job_titles[i])
 job = jobs[job_idx]
 job_keywords = keywords_for_item(job)
 
+# Show job details so user knows what they're matching against
 with st.expander("📄 Job Details", expanded=True):
     st.markdown(f"**Title:** {job.get('title','')}")
     st.markdown(f"**Company:** {job.get('company','')}")
@@ -179,12 +196,14 @@ run = st.button("🔍 Find Top 3 Matching Resumes", use_container_width=True)
 
 if run:
     with st.spinner("Embedding & ranking..."):
+        # Compute embedding for selected job
         job_vec = vector_mean_for_keywords(job_keywords, model, client)
         if not job_vec:
             st.error("Could not compute job embedding (no keywords?).")
             st.stop()
 
         rows = []
+        # For each resume, compute embedding and calculate distance
         for r in resumes:
             r_keywords = keywords_for_item(r)
             r_vec = vector_mean_for_keywords(r_keywords, model, client)
@@ -193,6 +212,7 @@ if run:
             dist = euclidean(job_vec, r_vec)
             rows.append((dist, r))
 
+        # Sort resumes by smallest distance and keep top 3
         rows.sort(key=lambda t: t[0])
         top3 = rows[:3]
 
