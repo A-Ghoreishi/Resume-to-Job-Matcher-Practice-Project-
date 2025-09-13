@@ -1,9 +1,3 @@
-# 🧠 NLP Resume↔Job Matcher (MetisAI Version)
-# ------------------------------------------
-# Loads API key from .env (API_KEY) by default
-# or lets you override in the sidebar.
-# Uses custom MetisAI endpoint: https://api.metisai.ir/openai/v1
-
 from __future__ import annotations
 import json
 import math
